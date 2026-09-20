@@ -1,8 +1,13 @@
 import { CollectionState, EmptyState } from './CollectionStates'
 import { useCollection } from '../hooks/useCollection'
+import { API_BASE_URL } from '../api'
+
+const workoutsEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+  : `${API_BASE_URL}/workouts/`
 
 function Workouts() {
-  const { items, status, error } = useCollection('workouts')
+  const { items, status, error } = useCollection('workouts', workoutsEndpoint)
 
   return (
     <section className="resource-page">

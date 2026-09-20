@@ -13,8 +13,8 @@ export function normalizeCollection(payload) {
   return []
 }
 
-export async function fetchCollection(resource) {
-  const response = await fetch(`${API_BASE_URL}/${resource}/`)
+export async function fetchCollection(resource, endpoint = `${API_BASE_URL}/${resource}/`) {
+  const response = await fetch(endpoint)
   if (!response.ok) throw new Error(`Could not load ${resource}.`)
   return normalizeCollection(await response.json())
 }

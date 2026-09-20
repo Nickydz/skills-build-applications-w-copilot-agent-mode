@@ -1,8 +1,13 @@
 import { CollectionState, EmptyState } from './CollectionStates'
 import { useCollection } from '../hooks/useCollection'
+import { API_BASE_URL } from '../api'
+
+const usersEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+  : `${API_BASE_URL}/users/`
 
 function Users() {
-  const { items, status, error } = useCollection('users')
+  const { items, status, error } = useCollection('users', usersEndpoint)
 
   return (
     <section className="resource-page">

@@ -1,8 +1,13 @@
 import { CollectionState, EmptyState } from './CollectionStates'
 import { useCollection } from '../hooks/useCollection'
+import { API_BASE_URL } from '../api'
+
+const leaderboardEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : `${API_BASE_URL}/leaderboard/`
 
 function Leaderboard() {
-  const { items, status, error } = useCollection('leaderboard')
+  const { items, status, error } = useCollection('leaderboard', leaderboardEndpoint)
 
   return (
     <section className="resource-page">

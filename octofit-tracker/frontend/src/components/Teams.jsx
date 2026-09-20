@@ -1,8 +1,13 @@
 import { CollectionState, EmptyState } from './CollectionStates'
 import { useCollection } from '../hooks/useCollection'
+import { API_BASE_URL } from '../api'
+
+const teamsEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+  : `${API_BASE_URL}/teams/`
 
 function Teams() {
-  const { items, status, error } = useCollection('teams')
+  const { items, status, error } = useCollection('teams', teamsEndpoint)
 
   return (
     <section className="resource-page">
